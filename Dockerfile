@@ -1,4 +1,8 @@
+FROM flnpw/ca-certificates AS certs
+
 FROM busybox
+COPY --from=certs /etc/ssl /etc/ssl
+
 ARG VERSION_TAG=1.5.6
 ARG ARTIFACT=packer_${VERSION_TAG}_linux_amd64.zip
 ENV URL=https://releases.hashicorp.com/packer/$VERSION_TAG/$ARTIFACT
